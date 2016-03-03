@@ -24,4 +24,18 @@ boot(app, __dirname, function(err) {
   // start the server if `$ node server.js`
   if (require.main === module)
     app.start();
+
+  var Comment = app.models.Comment;
+  Comment.create({}, function (err, res) {
+    if (err) return console.log(err);
+    console.log('Created a comment!');
+    res.destroy(function (err, res) {
+      if (err) return console.log(err);
+      console.log('Count: ' + res.count);
+    });
+    res.destroy(function (err, res) {
+      if (err) return console.log(err);
+      console.log('Count: ' + res.count);
+    });
+  });
 });
